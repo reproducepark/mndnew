@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import ShowDate from "./components/ShowDate";
 import ShowDateDiff from "./components/ShowDateDiff";
 import ShowCameraAnim from "./components/ShowCameraAnim";
-import DateTimePickerForIT from "./components/DatePickerIT";
-import DateTimePickerForLT from "./components/DatePickerLT";
 import MyComponent from "./components/MyComponent";
 
 const BackGroundImage = require("./assets/images/img_bg_mymnd_wodate.png");
