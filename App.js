@@ -1,27 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ImageBackground, StyleSheet, View, Animated, Easing } from "react-native";
 
 const BackGroundImage = require("./assets/images/img_bg_mymnd.png");
 const CameraImg = require("./assets/images/img_policy_state_camera_block.png");
 const CircleImg = require("./assets/images/circle_image.png");
 export default function App() {
-  const rotation = new Animated.Value(0);
+  const [rotationDegree, setRotationDegree] = useState(0);
 
   useEffect(() => {
-    Animated.loop(
-      Animated.timing(rotation, {
-        toValue: 1,
-        duration: 2500,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    ).start();
-  }, [rotation]);
+    const interval = setInterval(() => {
+      setRotationDegree((prevDegree) => (prevDegree + 20) % 360);
+    }, 100);
 
-  const spin = rotation.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
+    return () => clearInterval(interval);
+  }, []);
+
+  const circleRotationStyle = {
+    transform: [{ rotate: `${rotationDegree}deg` }],
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +32,7 @@ export default function App() {
           </Image>
           <Animated.Image
             source={CircleImg}
-            style={[styles.circle, { transform: [{ rotate: spin }] }]}>
+            style={[styles.circle, circleRotationStyle]}>
           </Animated.Image>
         </View>
       </ImageBackground>
@@ -66,8 +62,7 @@ const styles = StyleSheet.create({
     width: 244,
     height: 244,
     position: 'absolute',
-
-    marginLeft: -122, // 이미지의 가로 크기 절반만큼 왼쪽으로 이동
+    marginLeft: -(244/2), // 이미지의 가로 크기 절반만큼 왼쪽으로 이동
     marginTop: -47, // 이미지의 세로 크기 절반만큼 위로 이동
 
   },
