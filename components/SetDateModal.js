@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Button, Modal, StyleSheet, Platform, TouchableOpacity, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const MyComponent = ({ setLockedDate }) => {
+const SetDate = ({ setLockedDate }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MyComponent;
+export default SetDate;

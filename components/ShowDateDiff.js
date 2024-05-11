@@ -24,7 +24,7 @@ export default function ShowDateDiff({ lockedDate }) {
         return () => {
             clearInterval(timerID);
         };
-    }, []);
+    }, [lockedDate]);
 
     return (
         <View>

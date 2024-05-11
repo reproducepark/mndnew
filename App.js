@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import ShowDate from "./components/ShowDate";
 import ShowDateDiff from "./components/ShowDateDiff";
 import ShowCameraAnim from "./components/ShowCameraAnim";
-import MyComponent from "./components/MyComponent";
+import SetDate from "./components/SetDateModal";
 
 const BackGroundImage = require("./assets/images/img_bg_mymnd_wodate.png");
+
 
 export default function App() {
   const [installedDate, setInstalledDate] = useState(new Date(2024, 4, 5, 18, 11, 0));
@@ -21,8 +22,7 @@ export default function App() {
         <ShowDate
           installedDate={installedDate}
           lockedDate={lockedDate} />
-        <MyComponent setLockedDate={setLockedDate}/>
-        {/* <MyComponent /> */}
+        <SetDate setLockedDate={setLockedDate} />
         <View style={styles.overlay}>
           <ShowCameraAnim />
           <ShowDateDiff lockedDate={lockedDate} />
