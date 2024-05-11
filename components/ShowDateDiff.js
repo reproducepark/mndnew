@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default function ShowDateDiff({ lockedDate }) {
     const [timeDifference, setTimeDifference] = useState(0);
+    const [overNine, setOverNine] = useState(true);
 
     const formatTimeDifference = (difference) => {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -21,6 +22,13 @@ export default function ShowDateDiff({ lockedDate }) {
             setTimeDifference(difference);
         }, 1000);
 
+        // when time difference is bigger than 9 days, change marginLeft
+        if (timeDifference > 9 * 24 * 60 * 60 * 1000) {
+            setOverNine(true);
+        } else {
+            setOverNine(false);
+        }
+
         return () => {
             clearInterval(timerID);
         };
@@ -28,14 +36,14 @@ export default function ShowDateDiff({ lockedDate }) {
 
     return (
         <View>
-            <Text style={styles.dateDiff1}>{formatTimeDifference(timeDifference)[0]}</Text>
+            <Text style={[overNine ? styles.dateDiff1a : styles.dateDiff1b]}>{formatTimeDifference(timeDifference)[0]}</Text>
             <Text style={styles.dateDiff2}>{formatTimeDifference(timeDifference)[1]}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    dateDiff1: {
+    dateDiff1a: {
         color: '#cfcfcf',
         fontSize: 18,
         fontVariant: ['tabular-nums'],
@@ -43,7 +51,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         fontWeight: '500',
         top: 118,
-        left: -23,
+        left: -12,
+    },
+    dateDiff1b: {
+        color: '#cfcfcf',
+        fontSize: 18,
+        fontVariant: ['tabular-nums'],
+        textAlign: 'center',
+        position: 'absolute',
+        fontWeight: '500',
+        top: 118,
+        left: -17,
     },
     dateDiff2: {
         color: '#cfcfcf',

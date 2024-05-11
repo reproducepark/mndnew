@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Modal, StyleSheet, Platform, TouchableOpacity, Text } from 'react-native';
+import { View, Button, Modal, StyleSheet, Image, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const SetDate = ({ setLockedDate }) => {
@@ -33,7 +33,9 @@ const SetDate = ({ setLockedDate }) => {
                 onRequestClose={() => setModalVisible(false)}
             >
                 <View style={styles.modalContainer}>
-                    <Text>차단일시를 변경하세요</Text>
+                    <Image source={require('../assets/images/mnd.png')} />
+                    <Text style={styles.text1}>꾹방모바일보안</Text>
+                    <Text style={styles.text2}>차단일시를 변경하세요</Text>
                     {showDatePicker && (
                         <DateTimePicker
                             value={date}
@@ -43,7 +45,7 @@ const SetDate = ({ setLockedDate }) => {
                             onChange={onChangeDate}
                         />
                     )}
-                    <Button title="닫기" onPress={() => {
+                    <Button color='red' title="닫기" onPress={() => {
                         setModalVisible(false);
                         setShowDatePicker(false); // DateTimePicker를 보이지 않도록 설정
                     }} />
@@ -55,6 +57,26 @@ const SetDate = ({ setLockedDate }) => {
 
 
 const styles = StyleSheet.create({
+    text1: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: -10,
+        color: 'white',
+        margin: 70,
+    },
+    text2: {
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'white',
+        margin: 10,
+    },
+    text3: {
+        fontSize: 20,
+        textAlign: 'center',
+        color : 'red',
+    },
     container: {
         flex: 1,
         // marginLeft: ,
@@ -64,7 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,1)',
+        backgroundColor: '#deaa3c',
     },
 });
 
