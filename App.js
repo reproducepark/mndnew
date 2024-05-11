@@ -6,12 +6,13 @@ import ShowDateDiff from "./components/ShowDateDiff";
 import ShowCameraAnim from "./components/ShowCameraAnim";
 import DateTimePickerForIT from "./components/DatePickerIT";
 import DateTimePickerForLT from "./components/DatePickerLT";
+import MyComponent from "./components/MyComponent";
 
 const BackGroundImage = require("./assets/images/img_bg_mymnd_wodate.png");
 
 export default function App() {
-  const [installedDate, setInstalledDate] = useState(new Date(2011, 10, 11, 11, 11, 0));
-  const [lockedDate, setLockedDate] = useState(new Date(2024, 0, 1, 0, 0, 0));
+  const [installedDate, setInstalledDate] = useState(new Date(2024, 4, 5, 18, 11, 0));
+  const [lockedDate, setLockedDate] = useState(new Date(2024, 4, 5, 18, 11, 0));
 
   return (
     <View style={styles.container}>
@@ -22,12 +23,8 @@ export default function App() {
         <ShowDate
           installedDate={installedDate}
           lockedDate={lockedDate} />
-        <DateTimePickerForIT
-          setInstalledDate={setInstalledDate}
-        />
-        <DateTimePickerForLT
-          setLockedDate={setLockedDate}
-        />
+        <MyComponent setLockedDate={setLockedDate}/>
+        {/* <MyComponent /> */}
         <View style={styles.overlay}>
           <ShowCameraAnim />
           <ShowDateDiff lockedDate={lockedDate} />
